@@ -8,6 +8,10 @@ var UserSchema = new Schema({
     facebook : {
         id : String,
         token : String,
+    },
+    twitter : {
+        id : String,
+        token : String,
     }
 });
 
