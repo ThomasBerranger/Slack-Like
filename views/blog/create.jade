@@ -1,11 +1,20 @@
 extends ../layout
 
 block content
+
+    br
+    br
+    br
+
+    h1.font-title= "Create your room"
+ 
+    br
+
     form(method="POST")
         .form-group
-            label(for="titleInput") Title
-            input#titleInput(type="text", name="title")
+            input.form-control.form-control-lg#titleInput(type="text", name="title", placeholder='Titre')
         .form-group
-            label(for="contentInput") Content
-            textarea#contentInput(name="content")
-        input(type="submit", value="Envoyé c'est pesé") 
+            textarea.form-control.form-control-lg#contentInput(name="content", placeholder='Content')
+        input.btn.btn-lg.btn-success(type="submit", value="Create your room") 
+
+

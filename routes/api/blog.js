@@ -29,8 +29,6 @@ router.post('/create', function(req, res) {
                 itemCreated : item
             });
     });
-
-
 });
 
 // View Post
@@ -45,13 +43,13 @@ router.get('/permalink/:permalink', function(req, res){
         res.json(item);
     });
 });
-// Remove Post
 
+
+// Remove Post
 router.get("/delete/:id", function(req, res) {
     Post.findByIdAndRemove(req.params.id, function(err, item){
         if(err)
             return res.json({ removed : false, error : err});
-        
         res.json({ removed : true });
     });
 });
