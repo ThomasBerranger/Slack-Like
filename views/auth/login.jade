@@ -32,19 +32,12 @@ block content
 
                 br
                 form(action="/auth/login", method="POST", style="text-align: center;")
-                .row
-                    .col-md-6
-                        .form-group
-                            input(type='text', name='username' class='form-control', placeholder='Username',required, autofocus)
-                    .col-md-6
-                        .form-group
-                            input(type='password', name='password' class='form-control', placeholder='Password', required)
-                br
-                .row
-                    .col-md-4
-                    .col-md-4
-                        .form-group
-                            button(class='btn btn-primary btn-block', type='submit') Sign in
+                    .form-group
+                        input(type='text', name='username' class='form-control', placeholder='Username',required, autofocus)
+                    .form-group
+                        input(type='password', name='password' class='form-control', placeholder='Password', required)
+                    .form-group
+                        button(class='btn btn-lg btn-primary btn-block', type='submit') Sign in
 
                 hr
 

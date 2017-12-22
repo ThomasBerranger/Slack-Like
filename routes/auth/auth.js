@@ -30,7 +30,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
 
 router.get('/logout', function(req, res) {
     req.logout();
-    res.redirect('/blog');
+    res.redirect('/');
 });
 
 router.post('/login', passport.authenticate('login', {
