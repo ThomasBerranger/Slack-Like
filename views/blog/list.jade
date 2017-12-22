@@ -1,9 +1,21 @@
 extends ../layout
 
 block content
-    a(href="/blog/create") Create new
-    ul
+    
+    br
+    br
+    br
+
+    h1.font-title= "List of rooms"
+ 
+    br
+
+    .list-group
         each post in posts
-            li
-                a(href="blog/permalink/#{post.permalink}") #{post.title}
-                a(href="blog/delete/#{post._id}", style="color: red;") X
+            a.list-group-item.list-group-item-action.font-text(href="blog/permalink/#{post.permalink}") #{post.title}
+        a.list-group-item.list-group-item-action.disabled.font-text.not-allowed(href='#') Example that you can't read
+
+    br
+
+    a(href="/blog/create" type='button' class='btn btn-success btn-lg pull-right') Create a new room 
+        i.fa.fa-plus(aria-hidden='true')
