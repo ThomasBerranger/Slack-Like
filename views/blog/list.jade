@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+    a(href="/blog/create") Create new
+    ul
+        each post in posts
+            li
+                a(href="blog/permalink/#{post.permalink}") #{post.title}
+                a(href="blog/delete/#{post._id}", style="color: red;") X

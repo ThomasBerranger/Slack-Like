@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+    form(method="POST")
+        .form-group
+            label(for="titleInput") Title
+            input#titleInput(type="text", name="title")
+        .form-group
+            label(for="contentInput") Content
+            textarea#contentInput(name="content")
+        input(type="submit", value="Envoyé c'est pesé") 

@@ -9,10 +9,12 @@ var passport = require('passport');
 var expressSession = require('express-session');
 
 var User = require('./models/user');
+var Post = require('./models/post');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth/auth');
+var blog = require('./routes/blog');
 
 var app = express();
 
@@ -23,7 +25,7 @@ mongoose.connect(mongoDB, {});
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(expressSession({ secret : 'MySecretP@$$w0rdWord!:o' }));
+app.use(expressSession({ secret : 'MyS3cr3tW0rd!:o' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -46,7 +48,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/auth', auth);
+app.use('/auth', auth); 
+app.use('/blog', blog);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
