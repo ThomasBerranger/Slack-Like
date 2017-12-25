@@ -12,7 +12,9 @@ var PostSchema = new Schema({
         author : String,
         permalink : String,
         message : String,
-        date : String
+        date : String,
+        like : Number,
+        unlike : Number
     }],
 
     user : { type: mongoose.Schema.Types.ObjectId, ref: "User"}
