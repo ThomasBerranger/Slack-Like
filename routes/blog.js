@@ -71,6 +71,7 @@ router.post("/post_comment/:id",isAuth, function(req, res){
             
             req.body.author = req.user.username;
             req.body.date = new Date();
+            req.body.like = 1
             item.comments.push(req.body);
 
             item.save(function(err, item){
