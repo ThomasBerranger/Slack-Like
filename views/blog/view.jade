@@ -2,10 +2,6 @@ extends ../layout
 
 block content
     
-    div
-        each comment in blog.comments
-            div
-                p #{comment.message} from #{comment.author} 
 
     br
     br
@@ -17,44 +13,18 @@ block content
             h1.card-title= blog.title
             p.card-text= blog.content
             
-            .row    
-                .col-md-1
-                .col-md-8
-                    .jumbotron(style='padding: 10px;')
-                        h4.display-9.font-text(style='text-align: left') Username
-                        hr.my-4
-                        p.lead(style='text-align: left')
-                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur auctor lobortis purus ut porttitor.
-                        p.lead.pull-right(style='margin-top: -30px')
-                            button.btn.btn-info(type='button')(style='margin-right: -10px') 
-                                i.fa.fa-smile-o(aria-hidden='true')
-
-
-            .row    
-                .col-md-3
-                .col-md-8
-                    .jumbotron(style='padding: 10px;')
-                        h4.display-9.font-text(style='text-align: left') Username
-                        hr.my-4
-                        p.lead(style='text-align: left')
-                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur auctor lobortis purus ut porttitor.
-                        p.lead.pull-right(style='margin-top: -30px')
-                            button.btn.btn-info(type='button')(style='margin-right: -10px') 
-                                i.fa.fa-smile-o(aria-hidden='true')
-
-
-            .row    
-                .col-md-1
-                .col-md-8
-                    .jumbotron(style='padding: 10px;')
-                        h4.display-9.font-text(style='text-align: left') Username
-                        hr.my-4
-                        p.lead(style='text-align: left')
-                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur auctor lobortis purus ut porttitor.
-                        p.lead.pull-right(style='margin-top: -30px')
-                            button.btn.btn-info(type='button')(style='margin-right: -10px') 
-                                i.fa.fa-smile-o(aria-hidden='true')
-
+            each comment in blog.comments
+                .row    
+                    .col-md-1
+                    .col-md-8
+                        .jumbotron(style='padding: 10px;')
+                            h4.display-15.font-text(style='text-align: left') #{comment.author}
+                            hr.my-4
+                            p.lead(style='text-align: left')
+                                | #{comment.message}
+                            p.lead.pull-right(style='margin-top: -30px')
+                                button.btn.btn-info(type='button')(style='margin-right: -10px') 
+                                    i.fa.fa-smile-o(aria-hidden='true')
 
             .row    
                 .col-md-2

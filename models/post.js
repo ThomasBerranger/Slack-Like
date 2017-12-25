@@ -10,6 +10,7 @@ var PostSchema = new Schema({
     date : Date,
     comments: [{
         author : String,
+        permalink : String,
         message : String,
         date : String
     }],
