@@ -64,13 +64,15 @@ router.get("/delete/:id",isAuth, function(req, res) {
 });
 
 
-router.post("/post_comment/:id", function(req, res){
+router.post("/post_comment/:id",isAuth, function(req, res){
     Post.findById(req.params.id, function(err, item){
         if(err)
             return res.send(err);
-
+            
+            req.body.author = req.user.username;
             req.body.date = new Date();
             item.comments.push(req.body);
+
             item.save(function(err, item){
                 res.redirect("/blog/permalink/" + item.permalink);
             })
