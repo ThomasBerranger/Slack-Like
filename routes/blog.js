@@ -8,7 +8,6 @@ var Post = mongoose.model('Post');
 // List blog posts
 router.get('/', function(req, res) {
     Post.find({}, function(err, items){
-        // items -> posts
         res.render('blog/list', { posts : items });
     });
 });
@@ -49,7 +48,7 @@ router.get('/id/:id', function(req, res) {
 
 router.get('/permalink/:permalink', function(req, res){
     Post.findOne({ permalink : req.params.permalink }).populate('user').exec(function(err, item){
-        res.render('blog/view', {blog: item});
+        res.render('blog/view', {blog: item, user: req.user});
     });
 });
 
