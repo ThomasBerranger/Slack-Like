@@ -2,15 +2,12 @@ extends ../layout
 
 block content
 
-    
-    | Your are #{user.username}
-
     br
     br
 
     .card.text-center
         .card-header
-            | Created by #{blog.user.username}
+            |#{blog.user.username} is this channel's administrator 
         .card-body
             h1.card-title= blog.title
             p.card-text= blog.content
@@ -22,13 +19,18 @@ block content
                             h4.display-15.font-text(style='text-align: left') #{comment.author}
                             hr.my-4
                             p.lead(style='text-align: left')
-                                | #{comment.message} like : #{comment.like}
+                                | #{comment.message} / like : #{comment.like}
                             p.lead(style='text-align: left')
                                 | #{comment.date}
                             p.lead.pull-right(style='margin-top: -30px')
                                 button.btn.btn-info(type='button')(style='margin-right: -10px') 
                                     i.fa.fa-smile-o(aria-hidden='true')
+                            if user.username == comment.author
+                            a(href="blog/delete/post_comment/#{comment._id}", style="color: red;") X Suppression de #{comment._id}
 
+
+            br
+            br
             .row    
                 .col-md-2
                 .col-md-8

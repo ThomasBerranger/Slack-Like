@@ -23,6 +23,7 @@ module.exports =  function(passport) {
                         nUser.facebook.id = profile.id;
                         nUser.facebook.token =token;
                         nUser.email = profile.emails[0].value;
+                        nUser.username = profile.emails[0].value;
 
                         nUser.save(function(err) {
                             if(err)

@@ -5,10 +5,10 @@ var isAuth = require('../tools/auth-tools').isAuth;
 var Post = mongoose.model('Post');
 
 
-// List blog posts
-router.get('/', function(req, res) {
+// List posts
+router.get('/', isAuth, function(req, res) {
     Post.find({}, function(err, items){
-        res.render('blog/list', { posts : items });
+        res.render('blog/list', { posts : items, user: req.user });
     });
 });
 
@@ -40,7 +40,6 @@ router.post('/create', isAuth, function(req, res) {
 // View Post
 router.get('/id/:id', function(req, res) {
     Post.findById(req.params.id, function(err, item){
-        console.log(item);
         res.render('blog/view', { blog: item });
     })
 });
@@ -53,7 +52,7 @@ router.get('/permalink/:permalink', function(req, res){
 });
 
 
-// Remove Post
+// Remove a room
 router.get("/delete/:id",isAuth, function(req, res) {
     Post.findByIdAndRemove(req.params.id, function(err, item){
         if(err)
@@ -63,6 +62,11 @@ router.get("/delete/:id",isAuth, function(req, res) {
 });
 
 
+// Remove a comment
+
+
+
+// Create a comment
 router.post("/post_comment/:id",isAuth, function(req, res){
     Post.findById(req.params.id, function(err, item){
         if(err)

@@ -12,7 +12,8 @@ var UserSchema = new Schema({
     twitter : {
         id : String,
         token : String,
-    }
+    },
+    role: String
 });
 
 var User = mongoose.model('User', UserSchema);

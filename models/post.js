@@ -16,7 +16,6 @@ var PostSchema = new Schema({
         like : Number,
         unlike : Number
     }],
-
     user : { type: mongoose.Schema.Types.ObjectId, ref: "User"}
 });
 
