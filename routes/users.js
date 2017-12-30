@@ -25,7 +25,7 @@ router.get("/edit/:id",isAuth, function(req, res) {
   User.findById(req.params.id, function(err, item){
       if(err)
           return res.send("Error ! ");
-      item.role = "Super Admin"
+      item.role = !item.role
       item.save(function() {
         
       })

@@ -8,12 +8,12 @@ block content
 
     h1 Your email : #{user.email}
 
-    h1 Your role : #{user.role}
+    h1 Your role : 
+        if user.role
+            | User
+        else
+            | Super Admin
+    a.btn.btn-info(href="edit/#{user._id}", role="button") Change your role
 
-    h1 Your password : #{user.password}
-
-    h1 Your id : #{user.id}
-
-    a(href="delete/#{user._id}") Delete this account
     br
-    a(href="edit/#{user._id}") Edit this account
+    a(href="delete/#{user._id}") Delete this account

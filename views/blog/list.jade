@@ -13,7 +13,7 @@ block content
     .list-group
         each post in posts
             a.list-group-item.list-group-item-action.font-text(href="blog/permalink/#{post.permalink}") #{post.title}
-            if user.id == post.user
+            if user.id == post.user || user.role == false
                 a(href="blog/delete/#{post._id}", style="color: red;") X Suppression
         a.list-group-item.list-group-item-action.disabled.font-text.not-allowed(href='#') Example that you can't read
 
