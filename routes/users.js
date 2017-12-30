@@ -20,18 +20,18 @@ router.get("/delete/:id",isAuth, function(req, res) {
 });
 
 
-// edit a user
-router.get("/edit/:id",isAuth, function(req, res) {
+// change a user role
+router.get("/edit_role/:id",isAuth, function(req, res) {
   User.findById(req.params.id, function(err, item){
       if(err)
           return res.send("Error ! ");
       item.role = !item.role
-      item.save(function() {
-        
-      })
+      item.save(function() {})
       res.redirect('/users/account');
   });
 });
+
+
 
 
 module.exports = router;

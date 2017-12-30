@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var methodOverride = require('method-override');
 var expressSession = require('express-session');
 
 var User = require('./models/user');
@@ -18,8 +19,25 @@ var blog = require('./routes/blog');
 
 var app = express();
 
-var mongoDB = 'mongodb://127.0.0.1:27017/slack-like';
-mongoose.connect(mongoDB, {});
+/*  @NOTE
+ *  DeprecationWarning: `open()` is deprecated in mongoose >= 4.11.0, use
+ *  `openUri()` instead, or set the `useMongoClient` option if using
+ *  `connect()` or `createConnection()`.
+ */
+mongoose.Promise = global.Promise;
+let database = mongoose.connect('mongodb://localhost/slack-like', {
+    useMongoClient: true,
+    socketTimeoutMS: 0,
+    keepAlive: true,
+    reconnectTries: 30
+});
+
+database.then(function (db) {
+    console.log('DB : Ready to work !');
+});
+
+//- Method override
+app.use(methodOverride('_method'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,7 +66,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/auth', auth); 
+app.use('/auth', auth);
 app.use('/blog', blog);
 
 // catch 404 and forward to error handler

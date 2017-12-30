@@ -4,16 +4,22 @@ block content
 
     br
 
-    h1 Your name : #{user.username}
-
-    h1 Your email : #{user.email}
-
     h1 Your role : 
         if user.role
-            | User
+            | User 
         else
-            | Super Admin
-    a.btn.btn-info(href="edit/#{user._id}", role="button") Change your role
+            | Super Admin 
+        a.btn.btn-info(href="edit_role/#{user._id}", role="button") Change your role
 
     br
-    a(href="delete/#{user._id}") Delete this account
+
+    form(method="POST")
+        .form-group
+            input.form-control.form-control-lg#nameInput(type="text", name="username", value="#{user.username}")
+        .form-group
+            input.form-control.form-control-lg#emailInput(name="email", placeholder='email', value="#{user.email}")
+        input.btn.btn-lg.btn-success(type="submit", value="Update your account") 
+
+
+    br
+    a.btn.btn-danger(href="delete/#{user._id}", role="button") Delete this account

@@ -10,29 +10,35 @@ var isValidPassword = function(user, password) {
 
 var createHash = function(password){
     return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-   }
+}
 
 module.exports = function(passport) {
-passport.use('login', new LocalStrategy({
-    passReqToCallback: true
-}, function(req, username, password, done){
+
+    passport.use('login', new LocalStrategy({
+        passReqToCallback: true
+    }, function(req, username, password, done){
         loginUser = function() {
-        User.findOne({ 'username' : username }, function(err, user){
-            if(err)
+            /*
+             *  @NOTE
+             *  Version 4 de Mongoose on utilise plus de callback
+             *  la fonction est une promesse, du coup on récupere
+             *  le résultat avec un .then()
+             */
+            User.findOne({ 'username' : username }).then(user => {
+                if(!user) {
+                    console.log("User not found with username" + username);
+                    return done(null, false);
+                } else if(!isValidPassword(user, password)) {
+                    console.log("Invalid password");
+                    return done(null, false);
+                } else {
+                    return done(null, user);
+                }
+            }).catch(err => {
                 return done(err);
-            if(!user) { 
-                console.log("User not found with username" + username);
-                return done(null, false);
-            }
-            if(!isValidPassword(user, password)) {
-                console.log("Invalid password");
-                return done(null, false);
-            }
-            return done(null, user);
-        });
+            });
         }
         process.nextTick(loginUser);
-    })
-);
+    }));
 
 }

@@ -25,8 +25,12 @@ block content
                             p.lead.pull-right(style='margin-top: -30px')
                                 button.btn.btn-info(type='button')(style='margin-right: -10px') 
                                     i.fa.fa-smile-o(aria-hidden='true')
-                            if user.username == comment.author
-                            a(href="blog/delete/post_comment/#{comment._id}", style="color: red;") X Suppression de #{comment._id}
+                            
+                            if user.username == comment.author || user.role == false
+                                form(method="POST" action="/blog/delete/post_comment?_method=DELETE")
+                                    input(type="hidden" name="id_post" value=blog._id)
+                                    input(type="hidden" name="id_comment" value=comment._id)
+                                    button.btn.btn-danger(type="submit") X Suppression
 
 
             br
@@ -40,6 +44,8 @@ block content
                                 input(name="message", type="text", placeholder=" Message")
                             .form-group 
                                 button(class='btn btn-lg btn-primary btn-block', type='submit') Send
+
+
 
 
         .card-footer.text-muted
