@@ -62,8 +62,6 @@ router.get("/delete/:id",isAuth, function(req, res) {
 });
 
 
-// Remove a comment
-
 
 
 // Create a comment

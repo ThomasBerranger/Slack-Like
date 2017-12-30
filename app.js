@@ -18,7 +18,7 @@ var blog = require('./routes/blog');
 
 var app = express();
 
-var mongoDB = 'mongodb://127.0.0.1:27017/slike-like';
+var mongoDB = 'mongodb://127.0.0.1:27017/slack-like';
 mongoose.connect(mongoDB, {});
 
 // view engine setup

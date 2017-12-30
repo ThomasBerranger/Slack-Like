@@ -15,7 +15,7 @@ var createHash = function(password){
 module.exports = function(passport) {
 passport.use('login', new LocalStrategy({
     passReqToCallback: true
-}, function(req,username, password, done){
+}, function(req, username, password, done){
         loginUser = function() {
         User.findOne({ 'username' : username }, function(err, user){
             if(err)

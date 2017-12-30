@@ -16,7 +16,7 @@ module.exports = function(passport) {
 
 passport.use('signup', new LocalStrategy({
     passReqToCallback: true
-}, function(req,username, password, done){
+}, function(req, username, password, done){
     findOrCreateUser = function() {
         User.findOne({ 'username' : username}, function(err, user){
             if(err) {
@@ -31,7 +31,6 @@ passport.use('signup', new LocalStrategy({
 
                 nUser.username = username;
                 nUser.password = createHash(password);
-                nUser.email = req.params.email;
                 
                 nUser.save(function(err){
                     if(err) {

@@ -7,3 +7,13 @@ block content
     h1 Your name : #{user.username}
 
     h1 Your email : #{user.email}
+
+    h1 Your role : #{user.role}
+
+    h1 Your password : #{user.password}
+
+    h1 Your id : #{user.id}
+
+    a(href="delete/#{user._id}") Delete this account
+    br
+    a(href="edit/#{user._id}") Edit this account
