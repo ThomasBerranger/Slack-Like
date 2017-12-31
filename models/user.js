@@ -13,7 +13,8 @@ var UserSchema = new Schema({
         id : String,
         token : String,
     },
-    role: Boolean
+    role: Boolean,
+    mute: Boolean
 });
 
 var User = mongoose.model('User', UserSchema);

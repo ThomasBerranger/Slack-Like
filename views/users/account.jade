@@ -20,6 +20,13 @@ block content
             input.form-control.form-control-lg(type="text", name="email", value="#{user.email}")
         input.btn.btn-lg.btn-success(type="submit", value="Update your account")
         
+        
+    br
+    h3 You are actually  
+        if user.mute
+            | mute 
+        else
+            | not mute 
 
 
     br

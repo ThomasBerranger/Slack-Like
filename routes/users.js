@@ -47,6 +47,16 @@ router.get("/edit_role/:id",isAuth, function(req, res) {
 });
 
 
+// list of users
+router.get('/list', isAuth,  function(req, res, next) {
+    User.find({}).then(items => {
+        res.render('users/list', { users : items });
+    }).catch(err => {
+        console.log(err);
+    });
+  });
+
+  
 
 
 module.exports = router;
