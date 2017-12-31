@@ -15,10 +15,11 @@ block content
 
     form(method="POST")
         .form-group
-            input.form-control.form-control-lg#nameInput(type="text", name="username", value="#{user.username}")
+            input.form-control.form-control-lg(type="text", name="username", value="#{user.username}")
         .form-group
-            input.form-control.form-control-lg#emailInput(name="email", placeholder='email', value="#{user.email}")
-        input.btn.btn-lg.btn-success(type="submit", value="Update your account") 
+            input.form-control.form-control-lg(type="text", name="email", value="#{user.email}")
+        input.btn.btn-lg.btn-success(type="submit", value="Update your account")
+        
 
 
     br

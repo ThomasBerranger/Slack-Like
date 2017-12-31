@@ -10,6 +10,21 @@ router.get('/account', isAuth,  function(req, res, next) {
 });
 
 
+// update a user
+router.post('/account', isAuth,  function(req, res, next) {
+    User.findById(req.user, function(err, item){
+        if(err)
+            return res.send("Error ! ");
+
+        item.username = req.body.username
+        item.email = req.body.email
+
+        item.save(function() {})
+    });
+    res.redirect('/users/account');
+  });
+
+
 // delete a user
 router.get("/delete/:id",isAuth, function(req, res) {
   User.findByIdAndRemove(req.params.id, function(err, item){
