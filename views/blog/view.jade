@@ -26,11 +26,11 @@ block content
                                 button.btn.btn-info(type='button')(style='margin-right: -10px') 
                                     i.fa.fa-smile-o(aria-hidden='true')
                             
-                            if user.username == comment.author || user.role == false
+                            if user.username == comment.author || user.role == false || user.id == blog.user.id
                                 form(method="POST" action="/blog/delete/post_comment?_method=DELETE")
                                     input(type="hidden" name="id_post" value=blog._id)
                                     input(type="hidden" name="id_comment" value=comment._id)
-                                    button.btn.btn-danger(type="submit") X Suppression
+                                    button.btn.btn-danger(type="submit") X Suppression by
 
 
             br
