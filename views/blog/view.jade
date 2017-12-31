@@ -39,11 +39,14 @@ block content
                 .col-md-2
                 .col-md-8
                     .jumbotron
-                        form(action="/blog/post_comment/#{blog._id}", method="POST")
-                            .form-group
-                                input(name="message", type="text", placeholder=" Message")
-                            .form-group 
-                                button(class='btn btn-lg btn-primary btn-block', type='submit') Send
+                        if user.mute == false
+                            form(action="/blog/post_comment/#{blog._id}", method="POST")
+                                .form-group
+                                    input(name="message", type="text", placeholder=" Message")
+                                .form-group 
+                                    button(class='btn btn-lg btn-primary btn-block', type='submit') Send
+                        else
+                            h3 Your are mute sorry
 
 
 

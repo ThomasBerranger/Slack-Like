@@ -30,7 +30,7 @@ router.get("/delete/:id",isAuth, function(req, res) {
   User.findByIdAndRemove(req.params.id, function(err, item){
       if(err)
           return res.send("Error ! ");
-      res.redirect('/blog');
+        res.redirect('back');
   });
 });
 
@@ -38,13 +38,25 @@ router.get("/delete/:id",isAuth, function(req, res) {
 // change a user role
 router.get("/edit_role/:id",isAuth, function(req, res) {
   User.findById(req.params.id, function(err, item){
-      if(err)
-          return res.send("Error ! ");
-      item.role = !item.role
-      item.save(function() {})
-      res.redirect('/users/account');
+    if(err)
+        return res.send("Error ! ");
+    item.role = !item.role
+    item.save(function() {})
+    res.redirect('back');
   });
 });
+
+
+// change a user muting
+router.get("/edit_mute/:id",isAuth, function(req, res) {
+    User.findById(req.params.id, function(err, item){
+        if(err)
+            return res.send("Error ! ");
+        item.mute = !item.mute
+        item.save(function() {})
+        res.redirect('back');
+    });
+  });
 
 
 // list of users

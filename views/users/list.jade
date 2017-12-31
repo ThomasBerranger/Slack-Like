@@ -11,6 +11,14 @@ block content
     .list-group
         each user in users
             h5.list-group-item.list-group-item-action.font-text #{user.username} 
-                a(href="#", type="button", class="btn btn-info") Changer de rôle 
-                a(href="#", type="button", class="btn btn-warning") Muter 
-                a(href="#", type="button", class="btn btn-danger") Supprimer
+                a(href="edit_role/#{user.id}", type="button", class="btn btn-info") 
+                    if user.role
+                        | User 
+                    else
+                        | Super Admin  
+                a(href="edit_mute/#{user.id}", type="button", class="btn btn-warning") 
+                    if user.mute
+                        | mute 
+                    else
+                        | not mute 
+                a(href="delete/#{user.id}", type="button", class="btn btn-danger") Supprimer

@@ -24,4 +24,6 @@ block content
 
     a(href="users/account") User account
     br
-    a(href="users/list") Users list
+
+    if user.role == false
+        a(href="users/list") Users list
