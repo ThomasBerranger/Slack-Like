@@ -9,7 +9,7 @@ block content
         .card-header
             |#{blog.user.username} is this channel's administrator 
         .card-body
-            h1.card-title= blog.title
+            h1.card-title.font-text= blog.title
             p.card-text= blog.content
             
             each comment in blog.comments
