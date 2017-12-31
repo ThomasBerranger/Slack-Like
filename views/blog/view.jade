@@ -18,8 +18,18 @@ block content
                         .jumbotron(style='padding: 10px;')
                             h4.display-15.font-text(style='text-align: left') #{comment.author}
                             hr.my-4
-                            p.lead(style='text-align: left')
-                                | #{comment.message} / like : #{comment.like}
+                            if user.id == comment.user_id || user.role == false || user.id == blog.user.id
+                                p.lead(style='text-align: left')
+                                    form(method="POST" action="/blog/update/post_comment?_method=PUT" style='text-align: left')
+                                        input(type="hidden" name="id_post" value=blog._id)
+                                        input(type="hidden" name="id_comment" value=comment._id)
+                                        input(type="text" name="message" value=comment.message)
+                                        button(type="submit")
+                                            i.fa.fa-pencil
+                            else
+                                lead(style='text-align: left')
+                                    | #{comment.message} / like : #{comment.like} / unlike :
+                                
                             p.lead(style='text-align: left')
                                 | #{comment.date}
                             p.lead.pull-right(style='margin-top: -30px')
@@ -30,7 +40,7 @@ block content
                                 form(method="POST" action="/blog/delete/post_comment?_method=DELETE")
                                     input(type="hidden" name="id_post" value=blog._id)
                                     input(type="hidden" name="id_comment" value=comment._id)
-                                    button.btn.btn-danger(type="submit") X Suppression by
+                                    button.btn.btn-danger(type="submit") Suppression
 
 
             br

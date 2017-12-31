@@ -73,12 +73,12 @@ router.post("/post_comment/:id",isAuth, function(req, res){
     Post.findById(req.params.id).then(item => {
         req.body.author = req.user.username;
         req.body.date = new Date();
+        req.body.user_id = req.user.id;
         /*
         req.body.like = 1
         req.body.unlike = 0
         */
         item.comments.push(req.body);
-
         item.save().then(result => {
             res.redirect("/blog/permalink/" + result.permalink);
         }).catch(err => {
@@ -111,5 +111,25 @@ router.delete("/delete/post_comment", isAuth, function(req, res) {
     })
 });
 
+
+//- Update a comment
+//- Pour update, on utilise le verbe HTTP -> PUT
+router.put("/update/post_comment", isAuth, function(req, res) {
+    Post.findOne({ _id : req.body.id_post}).then(post => {
+        for (let i = 0; i < post.comments.length; i++) {
+            if (post.comments[i]._id == req.body.id_comment) {
+                post.comments[i].message = req.body.message;
+                post.comments[i].date = new Date();
+            }
+        }
+        post.save().then(result => {
+            res.redirect('back');
+        }).catch(err => {
+            console.log(err);
+        });
+    }).catch(err => {
+        console.log(err);
+    });
+});
 
 module.exports = router;
