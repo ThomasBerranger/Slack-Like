@@ -16,3 +16,7 @@ body {
 .not-allowed {
   cursor: not-allowed
 }
+
+.pointer {
+  cursor: pointer
+}

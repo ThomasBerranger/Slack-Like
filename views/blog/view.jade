@@ -2,9 +2,6 @@ extends ../layout
 
 block content
 
-    br
-    br
-
     .card.text-center
         .card-header
             |#{blog.user.username} is this channel's administrator 
@@ -13,37 +10,25 @@ block content
             p.card-text= blog.content
             
             each comment in blog.comments
-                .row    
-                    .col-md-12
-                        .jumbotron(style='padding: 10px;')
-                            h4.display-15.font-text(style='text-align: left') #{comment.author}
-                            hr.my-4
-                            if user.id == comment.user_id || user.role == false || user.id == blog.user.id
-                                p.lead(style='text-align: left')
-                                    form(method="POST" action="/blog/update/post_comment?_method=PUT" style='text-align: left')
-                                        input(type="hidden" name="id_post" value=blog._id)
-                                        input(type="hidden" name="id_comment" value=comment._id)
-                                        input(type="text" name="message" value=comment.message)
-                                        button(type="submit")
-                                            i.fa.fa-pencil
-                            else
-                                lead(style='text-align: left')
-                                    | #{comment.message} / like : #{comment.like} / unlike :
-                                
-                            p.lead(style='text-align: left')
-                                | #{comment.date}
-                            p.lead.pull-right(style='margin-top: -30px')
-                                button.btn.btn-info(type='button')(style='margin-right: -10px') 
-                                    i.fa.fa-smile-o(aria-hidden='true')
-                            
-                            if user.username == comment.author || user.role == false || user.id == blog.user.id
-                                form(method="POST" action="/blog/delete/post_comment?_method=DELETE")
-                                    input(type="hidden" name="id_post" value=blog._id)
-                                    input(type="hidden" name="id_comment" value=comment._id)
-                                    button.btn.btn-danger(type="submit") Suppression
-
-
-            br
+                .card-body
+                    h6.card-title.font-text(style='text-align: left') #{comment.author}
+                    if user.id == comment.user_id
+                        p.card-text(style='text-align: left; font-size: 20px') #{comment.message}
+                    else
+                        p.card-text(style='text-align: left; font-size: 20px') 
+                            form(method="POST" action="/blog/update/post_comment?_method=PUT", style='text-align: left')
+                                input(type="hidden" name="id_post" value=blog._id)
+                                input(type="hidden" name="id_comment" value=comment._id)
+                                input(type="text" name="message" value=comment.message)
+                                button(type="submit")
+                                    i.fa.fa-pencil
+                    p.card-text(style='text-align: left; font-size: 10px') #{comment.date}
+                        if user.username == comment.author || user.role == false || user.id == blog.user.id
+                            form(method="POST" action="/blog/delete/post_comment?_method=DELETE")
+                                input(type="hidden" name="id_post" value=blog._id)
+                                input(type="hidden" name="id_comment" value=comment._id)
+                                button.btn.btn-danger.pointer(type="submit") Suppression
+                hr
             br
             .row    
                 .col-md-2
@@ -52,14 +37,11 @@ block content
                         if user.mute == false
                             form(action="/blog/post_comment/#{blog._id}", method="POST")
                                 .form-group
-                                    input(name="message", type="text", placeholder=" Message")
+                                    input(name="message", type="text", placeholder="Message").form-control
                                 .form-group 
                                     button(class='btn btn-lg btn-primary btn-block', type='submit') Send
                         else
                             h3 Your are mute sorry
-
-
-
 
         .card-footer.text-muted
             | #{blog.date}

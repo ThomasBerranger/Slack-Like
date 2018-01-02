@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var methodOverride = require('method-override');
 var expressSession = require('express-session');
+var moment = require('moment');
 
 var User = require('./models/user');
 var Post = require('./models/post');

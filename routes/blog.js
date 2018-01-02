@@ -113,7 +113,6 @@ router.delete("/delete/post_comment", isAuth, function(req, res) {
 
 
 //- Update a comment
-//- Pour update, on utilise le verbe HTTP -> PUT
 router.put("/update/post_comment", isAuth, function(req, res) {
     Post.findOne({ _id : req.body.id_post}).then(post => {
         for (let i = 0; i < post.comments.length; i++) {
