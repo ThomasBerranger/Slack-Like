@@ -12,7 +12,7 @@ block content
             each comment in blog.comments
                 .card-body
                     h6.card-title.font-text(style='text-align: left') #{comment.author}
-                    if user.id == comment.user_id
+                    if user.id != comment.user_id
                         p.card-text(style='text-align: left; font-size: 20px') #{comment.message}
                     else
                         p.card-text(style='text-align: left; font-size: 20px') 
