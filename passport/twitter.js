@@ -23,6 +23,8 @@ module.exports =  function(passport) {
                         nUser.twitter.id = profile.id;
                         nUser.twitter.token = token;
                         nUser.username = profile.username;
+                        nUser.mute = false;
+                        nUser.role = true;
 
                         nUser.save(function(err) {
                             if(err)

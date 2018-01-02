@@ -8,5 +8,10 @@ module.exports = {
         'consumerKey' : 'pjsPYgEga4KE89ijDRcHOZsUj',
         'consumerSecret' :'EIiaSn2NoRSv6T9JNtfZEGM6ZXfQM9wTq79VZTScIe5XRBc3YK',
         'callback' : 'http://localhost:3000/auth/twitter/callback'
+    },
+    'googleAuth' : {
+        'clientID'      : '158138156011-60viihd3e04fsbgbbc701339cb2nlbva.apps.googleusercontent.com',
+        'clientSecret'  : 'j-uFQLTBAJu4-LrTtAX1tvfZ',
+        'callbackURL'   : 'http://localhost:3000/auth/google/callback'
     }
 }

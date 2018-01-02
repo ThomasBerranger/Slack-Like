@@ -5,6 +5,18 @@ require('../../passport/local_login')(passport);
 require('../../passport/local_signup')(passport);
 require('../../passport/facebook')(passport);;
 require('../../passport/twitter')(passport);
+require('../../passport/googleAuth')(passport);
+
+
+router.get('/google', passport.authenticate('google', { 
+    scope : ['profile', 'email'] 
+}));
+
+router.get('/google/callback', passport.authenticate('google', {
+    successRedirect : '/users/account',
+    failureRedirect : '/auth/login'
+}));
+
 
 router.get('/login', function(req, res) {
   res.render('auth/login');
@@ -15,7 +27,7 @@ router.get('/facebook', passport.authenticate('facebook', {
 }));
 
 router.get('/twitter/callback', passport.authenticate('twitter', {
-    successRedirect : '/blog',
+    successRedirect : '/users/account',
     failureRedirect : '/auth/login'
 }));
 
@@ -27,6 +39,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
     successRedirect : '/users/account',
     failureRedirect : '/auth/login'
 }));
+
 
 router.get('/logout', function(req, res) {
     req.logout();
@@ -46,5 +59,6 @@ router.post('/signup', passport.authenticate('signup', {
     successRedirect : '/blog',
     failureRedirect :'/auth/signup'
 }));
+
 
 module.exports = router;

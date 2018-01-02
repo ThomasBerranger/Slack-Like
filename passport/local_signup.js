@@ -33,17 +33,10 @@ module.exports = function(passport) {
 
                     nUser.username = username;
                     nUser.password = createHash(password);
-                    /*  @NOTE
-                     *  req.params -> récupérer une variable dans l'URL
-                     *  req.body -> récupérer une variable dans un formulaire
-                     */
                     nUser.email = req.body.email;
-                    /*
-                     *  @NOTE
-                     *  Version 4 de Mongoose on utilise plus de callback
-                     *  la fonction est une promesse, du coup on récupere
-                     *  le résultat avec un .then()
-                     */
+                    nUser.mute = false;
+                    nUser.role = true;
+
                     nUser.save().then(result => {
                         console.log('User created ! Yay !');
                         return done(null, result);

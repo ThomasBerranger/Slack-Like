@@ -13,6 +13,10 @@ var UserSchema = new Schema({
         id : String,
         token : String,
     },
+    google : {
+        id : String,
+        token : String,
+    },
     role: Boolean,
     mute: Boolean
 });
